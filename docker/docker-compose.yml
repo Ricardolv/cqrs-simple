@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  postgres-cqrs:
+    image: postgres:latest
+    restart: always
+    container_name: postgres-cqrs
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+      - POSTGRES_DB=db-product
+    networks:
+      - cqrs-network
+
+  mongo-cqrs:
+    image: mongo
+    restart: always
+    container_name: mongo-cqrs
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    ports:
+      - "27017:27017"
+    networks:
+      - cqrs-network
+
+  rabbitmq-cqrs:
+    image: rabbitmq:3.9-management
+    container_name: rabbitmq-cqrs
+    command: rabbitmq-server
+    environment:
+      - RABBITMQ_DEFAULT_USER=sampleuser
+      - RABBITMQ_DEFAULT_PASS=samplepassword
+      - RABBITMQ_DEFAULT_VHOST=product-dev
+    ports:
+        - "5672:5672"   #amqp
+        - "15672:15672" #http
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - cqrs-network
+
+networks:
+  cqrs-network:
+    driver: bridge
