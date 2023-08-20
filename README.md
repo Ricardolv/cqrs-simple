@@ -11,6 +11,7 @@
     - [Diagrama de Contexto](#diagrama-de-contexto)
     - [Diagrama de Container](#diagrama-de-container)
     - [Diagrama de Component](#diagrama-de-component)
+    - [Install](#install)
 
 ## Visão geral do cqrs-simple
 
@@ -31,18 +32,39 @@ Abaixo, apresenta-se as ferramentas utilizadas nesse projeto:
 ## Requisitos para Desenvolvimento
 - Java 17
 - Maven 3.x.x+
-- Rabbitmq
-- MongoDb
-- Postgresql
+- Docker / Docker Compose
 
 ## Esboço
-![Esboço](diagramms/cqrs-simple.png)
+![Esboço](diagramms/data/cqrs-simple.png)
 
 ## Diagrama de Contexto
-![Diagrama de Contexto](diagramms/cqrs-diagramm-context.png)
+![Diagrama de Contexto](diagramms/data/cqrs-diagramm-context.png)
 
 ## Diagrama de Container
-![Diagrama de Container](diagramms/cqrs-diagramm-container.png)
+![Diagrama de Container](diagramms/data/cqrs-diagramm-container.png)
 
 ## Diagrama de Component
-![Diagrama de Component](diagramms/cqrs-diagramm-component.png)
+![Diagrama de Component](diagramms/data/cqrs-diagramm-component.png)
+
+## Install
+Downalod project
+```console
+git git@github.com:Ricardolv/cqrs-simple.git && cqrs-simple 
+```
+Execute maven
+```console
+mvn clean install -DskipTests 
+```
+Execute docker-compose
+```console
+cd docker/ && docker-compose up -d
+```
+Execute cqrs-simple
+```console
+mvn springboot::run
+``` 
+Test creat Product
+![Creat Product](diagramms/data/create-product.png)
+
+Test read Product
+![Read Product](diagramms/data/read-product.png)
