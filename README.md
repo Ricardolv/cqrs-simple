@@ -67,4 +67,4 @@ Test creat Product
 ![Creat Product](diagramms/data/create-product.png)
 
 Test read Product
-![Read Product](diagramms/data/read-product.png)
+![Read Product](diagramms/data/reads-product.png)
